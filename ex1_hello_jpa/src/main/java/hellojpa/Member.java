@@ -41,9 +41,13 @@ public class Member {
 	public Team getTeam() {
 		return team;
 	}
-
-	public void setTeam(Team team) {
+	public void setTeame(Team team) {
 		this.team = team;
+	}
+	
+	public void changeTeam(Team team) {
+		this.team = team;
+		team.getMembers().add(this);
 	}
 
 }
