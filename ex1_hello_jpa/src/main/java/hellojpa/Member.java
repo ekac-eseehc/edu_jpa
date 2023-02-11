@@ -16,9 +16,10 @@ public class Member {
 	@Column(name = "USERNAME")
 	private String name;
 	
+	
 	@ManyToOne
-	@JoinColumn(name = "TEAM_ID")
-	private Team team;
+	@JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
+	Team team;
 
 	public Long getId() {
 		return id;
@@ -35,23 +36,5 @@ public class Member {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public Team getTeam() {
-		return team;
-	}
-	public void setTeame(Team team) {
-		this.team = team;
-	}
-	
-//	public void changeTeam(Team team) {
-//		this.team = team;
-//		team.getMembers().add(this);
-//	}
-
-	@Override
-	public String toString() {
-		return "Member [id=" + id + ", name=" + name + ", team=" + team + "]";
-	}
-	
 
 }
