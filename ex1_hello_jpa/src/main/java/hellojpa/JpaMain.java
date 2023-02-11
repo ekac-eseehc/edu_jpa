@@ -23,7 +23,7 @@ public class JpaMain {
 
 			Member member = new Member();
 			member.setName("member1");
-			member.changeTeam(team); //**
+//			member.changeTeam(team); //**
 			em.persist(member);
 			
 //			team.addMember(member);
@@ -32,12 +32,12 @@ public class JpaMain {
 //			em.clear();
 			
 			Team findTeam = em.find(Team.class, team.getId());
-			List<Member> members = findTeam.getMembers();
+//			List<Member> members = findTeam.getMembers();
 			
 			System.out.println("==============");
-			for (Member m : members) {
-				System.out.println("m = " + m.getName());
-			}
+//			for (Member m : members) {
+//				System.out.println("m = " + m.getName());
+//			}
 			System.out.println("==============");
 			
 			tx.commit();
