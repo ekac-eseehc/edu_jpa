@@ -7,7 +7,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-public class Delivery {
+public class Delivery extends BaseEntity {
 	
 	@Id @GeneratedValue
 	private Long id;
