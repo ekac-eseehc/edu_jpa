@@ -5,8 +5,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import org.hibernate.Hibernate;
-
 public class JpaMain {
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
@@ -18,17 +16,24 @@ public class JpaMain {
 
 		try {
 			
+			Team team = new Team();
+			team.setName("t1");
+			em.persist(team);
+			
 			Member member1 = new Member();
 			member1.setName("Kim");
+			member1.setTeam(team);
 			em.persist(member1);
 			
 			em.flush();
 			em.clear();
 			
-			Member refMember = em.getReference(Member.class, member1.getId());
-			System.out.println("refMember = " + refMember.getClass());
-			Hibernate.initialize(refMember);
-//			System.out.println("isLoaded = " + emf.getPersistenceUnitUtil().isLoaded(refMember));
+			Member m = em.find(Member.class, member1.getId());
+			System.out.println("m = " + m.getTeam().getClass());
+			
+			System.out.println("====================");
+			System.out.println("team name : " + m.getTeam().getName()); 
+			System.out.println("====================");
 			
 			tx.commit();
 		} catch (Exception e) {
