@@ -1,5 +1,7 @@
 package hellojpa;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -15,21 +17,13 @@ public class JpaMain {
 		tx.begin();
 
 		try {
-
-			Child child1 = new Child();
-			Child child2 = new Child();
 			
-			Parent parent = new Parent();
-			parent.addChild(child1);
-			parent.addChild(child2);
+			Member member = new Member();
+			member.setName("Kim");
+			member.setHomeAddress(new Address("city" , "street" , "123456"));
+			member.setWorkPeriod(new Period(LocalDateTime.now() , LocalDateTime.now()));
 			
-			em.persist(parent);
-
-			em.flush();
-			em.clear();
-			
-			Parent findParent = em.find(Parent.class, parent.getId());
-			em.remove(findParent);
+			em.persist(member);
 			
 			tx.commit();
 		} catch (Exception e) {
